@@ -1,0 +1,153 @@
+@import 'variables';
+@import 'mixins';
+
+div.outer-search-wrapper {
+    flex-basis: 40%;
+    display: flex;
+    margin-top: -$xxxs;
+    div.search-wrapper {
+      flex-basis: 100%;
+      display: flex;
+      justify-content: center;
+      input {
+          @include input;
+          width: 250px;
+          border: 1px solid $middle-light;
+          &:hover {
+            border: 1px solid $red;
+          }
+          &:focus {
+            outline: none;
+          }
+      }
+      .fontawesome {
+          color: $yellow;
+          align-self: center;
+          margin-left: -1.5rem; 
+          margin-top: $xxxs;       
+          cursor: pointer;
+      }
+    }
+    div.search-wrapper-hidden {
+        width: 1%;
+        display: flex;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateX(750px);
+        transition: opacity ease-in-out 1000ms, transform ease-in-out 500ms; 
+        input {
+            @include input;
+            width: 100%;
+            margin: 0 auto;
+            border: none;
+            border-bottom: $yellow 2px solid;
+        }
+        .fontawesome {
+            color: $yellow;
+            align-self: center;
+            margin-left: -1.5rem; 
+            margin-top: $xxxs;       
+            cursor: pointer;
+        }
+    }
+    div.search-wrapper-hidden.translateX {
+        transform: translateX(0px);
+        opacity: 1;
+    } 
+}
+ 
+.fontawesome.hidden, .fontawesome.fontawesome.hidden-700 {
+      visibility: hidden;
+      display: none;
+      color: $yellow;
+      align-self: center;
+      margin-left: -1.5rem; 
+      margin-top: -$xxxs;       
+      cursor: pointer;
+}
+
+
+  @media(max-width:1200px) {
+    div.outer-search-wrapper{
+      flex-basis: 40%;
+      div.search-wrapper {
+        input {
+            padding: $xxxs;
+            width: 60%;
+        }
+      }
+    }
+  }
+
+  @media(max-width:900px) {
+    div.outer-search-wrapper{
+        flex-basis: 20%;
+        div.search-wrapper {
+            visibility: hidden;
+            width: 100%;
+        }
+        &:hover > div.search-wrapper, &:focus-within > div.search-wrapper {
+            visibility: visible; 
+            transition: all ease-in-out 300ms;
+            input {
+                border: none;
+                border-bottom: 2px solid $yellow;
+                transition: all ease-in-out 300ms;
+                width: 100%;
+            }
+            .fontawesome {
+                display: none;
+            }
+        }
+        .fontawesome.hidden {
+            visibility: visible; 
+            display: block;
+        }
+    }
+  }
+
+  @media(max-width:750px) {
+      div.outer-search-wrapper {
+          width: 100%;
+          div.search-wrapper-hidden {
+              flex-basis: 100%;
+          }
+          .fontawesome.hidden {
+              display: none; 
+              visibility: hidden;
+          }
+          .fontawesome.fontawesome.hidden-700 {
+              visibility: visible; 
+              display: block;
+              position: absolute;
+              top: 22px;
+              margin: 0 auto;
+              left: 9%;
+          }
+          &:hover > div.search-wrapper, &:focus-within > div.search-wrapper {
+              visibility: hidden;
+              display: none;
+          }
+          &:hover > .fontawesome.fontawesome.hidden-700 {
+              visibility: visible; 
+              display: block;
+          }
+          &:hover > .fontawesome.fontawesome.hidden-700.hide {
+              visibility: hidden; 
+              display: none;
+        }
+          div.search-wrapper, &:focus-within > div.search-wrapper {
+              visibility: hidden;
+              display: none;
+          }
+      }
+  }
+
+  
+@media(max-width:500px) {
+    div.outer-search-wrapper {
+        display: none;
+    }
+}
+
+  

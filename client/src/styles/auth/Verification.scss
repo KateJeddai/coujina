@@ -1,0 +1,9 @@
+@import '../variables';
+@import '../mixins';
+
+div.verification-wrapper {
+    @include wrapper;
+    .link.link-success {
+        @include span-link;
+    }
+}

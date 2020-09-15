@@ -1,0 +1,75 @@
+@import 'variables';
+@import 'mixins';
+
+h3 {
+    margin: 0;
+    margin-bottom: $xs;
+    font-size: $font-title;
+    color: saturate($yellow, 10%);
+    text-align: right;
+}
+.card {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    margin: 0 auto $small auto;
+    background-color: $white;
+    display: flex;
+    -webkit-box-shadow: 0px 0px 21px -11px rgba(63,32,32,1);
+    -moz-box-shadow: 0px 0px 21px -11px rgba(63,32,32,1);
+    box-shadow: 0px 0px 21px -11px rgba(63,32,32,1);
+    img {
+        width: 50%; 
+        height: 100%;               
+        object-fit: cover;                
+    }
+    div.card-content {                        
+        padding: $xs;
+        position: relative;
+        .card-time-rank {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 2.5rem;
+            .stars-outer {
+                margin-top: -0.7rem;
+            }
+            .rank-number {
+                margin-top: -0.4rem;
+            }
+            span {
+                display: block;
+            }
+        }
+        p {
+            margin: 0;
+            color: $brown;
+            font-weight: 600;
+            font-size: $font-default;
+            text-transform: uppercase;
+            margin-bottom: $xxxs;
+        }
+        .icon {
+            position: absolute;
+            top: $xxs;
+            right: $xxxs;
+        }
+        span, .fontawesome {
+            color: saturate($yellow, 25%);
+            font-size: $font-small;
+            margin-right: $xxs;
+        }
+        span {
+            color: $brown;
+        }
+        .card-descr {
+            font-size: $font-default;                
+            margin: $xxxs auto;
+        }
+    }
+    .btn.btn-open {
+        @include button-open;
+        position: absolute;
+        bottom: $xs;
+    }
+}

@@ -1,0 +1,107 @@
+@import '../variables';
+@import '../mixins';
+
+div.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto $small auto;
+    height: auto;
+    h3 {
+        text-align: center;
+    }
+    .input-field {
+        input {
+            @include input;
+            position: relative;
+        }
+        p {
+          color: saturate($red, 35%);
+          font-weight: 600;
+        }
+        .fontawesome {
+            position: absolute;
+            margin-top: 0.1rem;
+            right: $xxs;
+            color: $middle-brown;
+        }
+    }
+    div.no-account-div {
+        width: 100%;
+        margin-bottom: $xs;        
+        font-size: $font-small;
+        .no-account-link {
+            text-decoration: none;
+            color: $red;
+            font-size: $font-small;
+        }
+    }
+   .btn.btn-login, .btn.btn-signup {
+        width: 100%;
+        border: $red 2px solid;
+        margin-top: $xxxs;
+        &:hover {
+            background-color: saturate($red, 25%);
+        }
+    }
+    div.btn.btn-login {
+        box-sizing: border-box;
+        background-color: $yellow;
+        border: $yellow 2px solid;
+        text-align: center;
+        font-family: Arial;
+        &:hover {
+            background-color: lighten($yellow, 10%);
+        }
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+    }
+    .links-fix-error-wrapper {
+        display: flex;
+        margin-bottom: $xxs;
+    }
+    .link-fix-error {
+        color: saturate($red, 20%);
+        text-decoration: none;
+        font-weight: 600;
+        margin-right: $xxs;
+    }
+}
+
+span.span-link {
+    @include span-link;
+}
+
+form.signup-form {
+    position: relative;    
+    div.tooltip{
+        width: 200px;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: -220px;
+        background-color: rgba(77,71,56, 0.5);
+        color: #fff;
+        padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+        box-sizing: border-box;
+        border-radius: 5px;
+        font-size:0.8rem;
+        font-weight:100;     
+        opacity: 0;
+        transition: all 300ms ease;
+    }
+    .tooltip::after {
+        content: "";
+        position: absolute;
+        top: calc(50% - 5px);
+        left: 100%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent transparent rgba(77,71,56, 0.7);
+    }
+    .tooltip.tooltip_opened {
+        opacity: 1;
+    }
+}    

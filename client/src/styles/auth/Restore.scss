@@ -1,0 +1,56 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+div.restore-form {
+    @include wrapper;
+    h3 {
+        text-align: center;
+        font-size: $font-title;
+        font-weight: 300;
+        color: saturate($yellow, 25%);
+    }
+    div.input-group {
+        width: 100%;
+        input {
+            width: 75%;
+            padding: $xxxs;
+            font-size: $font-default;        
+        }
+        button {
+            width: 20%;
+            padding: 0.42rem;
+            border: none;
+            font-size: $font-default;
+            cursor: pointer;
+            background-color: $red;
+            color: $white;
+            &:hover {
+                background-color: saturate($red, 25%);
+            }
+        }
+    }
+}
+
+div.restore-pass {
+    @include wrapper;
+    div.input-group {
+        width: 100%;
+        margin: $xs auto;            
+        input {
+            width: 100%;
+            box-sizing: border-box;
+        }        
+    }
+    button {
+        width: 100%;
+        padding: $xxs;
+        border: none;
+        font-size: $font-default;
+        cursor: pointer;
+        background-color: $red;
+        color: $white;
+        &:hover {
+            background-color: saturate($red, 25%);
+        }
+    }
+}

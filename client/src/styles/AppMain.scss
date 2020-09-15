@@ -1,0 +1,258 @@
+@import 'variables';
+@import 'mixins';
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $light;
+    h3 {
+        text-align: center;
+        color: $red;
+        font-size: $font-title;
+        margin: 0;
+        margin-bottom: $xs;
+    }
+    div.new-recipes {
+        flex-basis: 25%;
+        display: flex;
+        flex-direction: column;
+        margin-top: $small;
+        h3, p {
+            width: 250px;
+            margin: 0 auto $xs auto;
+            text-align: left;
+            color: $red;
+        }
+        p {
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .card {
+            width: 250px;
+            height: 220px;
+            margin: 0 auto $xs auto;
+            background-color: $white;
+            cursor: pointer;
+            position: relative;
+            img {
+                width: 100%; 
+                height: 100%;               
+                object-fit: cover; 
+            }
+            div.img-lighten {
+                @include lighten-img;         
+            }
+            div.card-title {
+                position: absolute;
+                background-color: rgba(63, 32, 32, 0.7);
+                width: 100%;
+                height: 60px;
+                bottom: 0;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                align-content: center;                
+                padding: $xs;
+                box-sizing: border-box;
+                color: $white;
+            }
+        }
+    }
+    div.categories {
+        flex-basis: 70%;
+        margin-top: $small;
+        div.category-row {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-bottom: $xs;
+            h3.category-title {
+                color: $yellow;
+                font-size: $font-title;                
+                text-transform: uppercase;
+                margin: 0;
+                margin-bottom: $xs;
+            }
+            div.category-content {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                position: relative;
+                .icon {
+                    position: absolute;
+                    top: calc(50% - 30px);
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    background-color: rgba(255,255,255,0.8);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: darken($brown, 15%);
+                    z-index: 100;
+                    cursor: pointer;
+                }
+                .icon.right {
+                    right: 0;
+                }
+                .icon.left {
+                    left: 0;
+                    margin-left: -20px;
+                }
+                .category-wrapper {
+                    width: 100%;
+                    display: flex;
+                }
+                .recipe-card {
+                    position: relative;
+                    width: 290px;
+                    height: 270px;
+                    margin-right: $xs;
+                    position: relative;
+                    -webkit-box-shadow: 0px 0px 21px -11px rgba(63,32,32,1);
+                    -moz-box-shadow: 0px 0px 21px -11px rgba(63,32,32,1);
+                    box-shadow: 0px 0px 21px -11px rgba(63,32,32,1);
+                    text-align: center;
+                    span.recipe-link {                              
+                        cursor: pointer;  
+                    }
+                    div.card-img {
+                        width: 100%;
+                        height: 70%;                        
+                        overflow: hidden;                     
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform ease-in 300ms;
+                        z-index: 1;
+                    }
+                    div.lighten-img {
+                        @include lighten-img;
+                        height: 70%;
+                        z-index: 100;
+                    }
+                    p.card-title {
+                        width: 70%;
+                        margin: $xs auto $xxs auto;
+                        color: $brown;
+                        text-decoration: none;
+                        font-size: $font-default;
+                        font-weight: 500;
+                        cursor: pointer;
+                    }
+                    p.time {
+                        position: absolute;
+                        bottom: $xxs;
+                        left: $xxs;
+                        margin: 0;
+                        font-size: $font-xs;
+                        .fontawesome {
+                            margin-right: $xxxs;
+                            color: saturate($yellow, 25%);
+                        }
+                    }
+                    .rating-stars-wrapper {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        width: 120px;
+                        .rank-number {
+                            margin-top: 0.25rem;
+                        }
+                    }
+                    .fontawesome.edit {
+                        position: absolute;
+                        bottom: $xxs;
+                        right: $xxs;
+                        color: $red;
+                    }
+                }
+                div.recipe-card:hover img {
+                    transform: scale(1.1);
+                    overflow: hidden;
+                } 
+                
+            }
+        }
+    }
+}
+
+// media queries 
+
+@media(max-width:1520px) {
+    main {
+        div.categories {
+            .rating-stars-wrapper {
+                width: 60px;
+                bottom: $xxs; 
+                margin: 0 auto;
+                height: 1.8rem;
+                .rank-number {
+                    margin-bottom: -0.6rem;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1400px) {
+    main {
+        div.categories {
+            flex-basis: 68%;
+            div.category-row {
+                div.category-content {
+                    .recipe-card {
+                            .rating-stars-wrapper {
+                                width: 60px;
+                                bottom: $xxs; 
+                                height: 1.8rem;
+                                .rank-number {
+                                    display: none;
+                                }
+                            }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1200px) {
+    main {
+        div.new-recipes {
+            display: none;
+        } 
+        div.categories {
+            flex-basis: 68%;
+            div.category-row {
+                div.category-content {
+                    .recipe-card {
+                            .rating-stars-wrapper {
+                                width: 60px;
+                                bottom: $xxs; 
+                                height: 1.8rem;
+                                .rank-number {
+                                    display: none;
+                                }
+                            }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:900px) {
+    main {
+        div.categories {
+            flex-basis: 90%;
+            margin: $small auto; 
+        }
+    }
+}
+

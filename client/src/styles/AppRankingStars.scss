@@ -1,0 +1,45 @@
+@import 'variables';
+@import 'mixins';
+@import url('https://fonts.googleapis.com/css?family=Chilanka&display=swap');
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.rating-stars-wrapper {
+    display: flex;
+    margin-top: 0.5rem;
+}
+.stars-outer {
+    position: relative;
+    display: inline-block;
+    height: 2.3rem;
+    display: flex;
+    align-items: center;
+}
+.stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'FontAwesome';
+    color: lighten($middle-light, 15%);
+}
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    height: 2.3rem;
+    display: flex;
+    align-items: center;
+}
+.stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'FontAwesome';
+    color: saturate($yellow, 30%);
+}
+.rank-number {
+    display: flex;
+    align-items: center;
+    margin-left: $xxs;
+    color: $yellow;
+    font-weight: 600;
+}
+

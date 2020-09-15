@@ -1,0 +1,96 @@
+@import 'variables';
+@import 'mixins';
+
+div.form-wrapper, div.form-recipe-wrapper {
+    margin: $large;
+    margin: $small auto;
+    padding: $small;
+    border: 1px solid $middle-brown;
+    box-sizing: border-box;
+    background: $light;
+    border: none;
+} 
+div.form-wrapper {
+    width: 400px;
+} 
+div.form-recipe-wrapper {
+    width: 60%;
+}
+    form {
+        width: 100%;
+        div.input-group, fieldset.input-group {
+            margin-bottom: $xs;
+        }
+        input {
+            width: 100%;
+            padding: $xxxs;
+            box-sizing: border-box;
+        }
+        label {
+            font-size: $font-small;
+            color: $red;
+        }
+        .img-preview {
+            width: 60%;
+            height: auto;
+            img {
+                width: 100%;
+            }
+        }
+        fieldset.input-group {
+            border: 1px solid $middle-light;
+            legend {
+                font-size: $font-middle;
+                margin-bottom: $xs;
+            }
+            input {
+                margin-bottom: $xs;
+            }
+        }
+        div.input-block {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            div.block-name {
+                flex-basis: 55%;
+                input {
+                    width: 100%;
+                    margin-bottom: 0;
+                }
+            }
+            div.block-quan {
+                flex-basis: 20%;
+                input {
+                    width: 100%;
+                    margin-bottom: 0;
+                }
+            }
+            div.block-unit {
+                flex-basis: 20%;
+            }
+            div.block-time, div.block-cook-time {
+                flex-basis: 78%;
+            }
+            div.block-time-unit, div.block-cook-unit {
+                flex-basis: 20%;
+            }
+        }
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: $xs;
+            font-size: $font-default;
+            font-family: chilanka, sans-serif;
+        }
+        .btn {
+            @include button;                       
+            background-color: $red;
+            color: $light;
+        }    
+        .btn.btn-add {
+                margin: $xs 0;
+        }
+        .btn.btn-submit {
+            width: 100%;
+        }
+    }

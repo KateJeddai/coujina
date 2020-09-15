@@ -1,0 +1,95 @@
+@import '../variables';
+@import '../mixins';
+
+div.edit-user-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: $xs auto $small auto;
+    position: relative;  
+    p.success-message {
+        margin: 0 auto $xs auto;
+        text-align: center;
+        &:last-child {
+            margin-bottom: $xs;
+        }
+    }
+    h3 {
+        text-align: center;
+    }
+
+    .btn.btn-cancel {
+        width: 50%;
+        background-color: transparent;
+        color: $middle-brown;
+    }
+    .cancel-username {        
+        border: $yellow 1px solid;
+    }
+    .cancel-email {
+        border: $red 1px solid;
+    }
+    .cancel-password {
+        border: darken($middle-brown, 10%) 1px solid;
+    }
+
+    .btn.btn-show {
+        width: 100%;
+        margin-bottom: $xxs;
+    }
+    .show-username {
+        background-color: $yellow;
+        border: $yellow 1px solid;
+    }  
+    .show-email {
+        border: $red 1px solid;
+    }
+    .show-password {
+        background-color: darken($middle-brown, 10%);
+        border: darken($middle-brown, 10%) 1px solid;
+    }
+    .show-username.active,
+    .show-email.active,
+    .show-password.active {
+        width: 50%;        
+    }
+
+    .input-field {
+        input {
+            @include input;
+        }
+        p {
+          color: saturate($red, 35%);
+          font-weight: 600;
+        }
+    }
+
+    div.tooltip{
+        width: 200px;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: -220px;
+        background-color: rgba(77,71,56, 0.5);
+        color: #fff;
+        padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+        box-sizing: border-box;
+        border-radius: 5px;
+        font-size:0.8rem;
+        font-weight:100;     
+        opacity: 0;
+        transition: all 300ms ease;
+    }
+    .tooltip::after {
+        content: "";
+        position: absolute;
+        top: calc(50% - 5px);
+        left: 100%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent transparent rgba(77,71,56, 0.7);
+    }
+    .tooltip.tooltip_opened{
+        opacity: 1;
+    }
+}

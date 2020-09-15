@@ -1,0 +1,116 @@
+@import 'variables';
+@import 'mixins';
+
+div.filters-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 70px;
+    padding: $xs;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        flex-basis: 20%;
+        text-align: center;
+        color: $red;
+        font-size: $font-middle;
+        margin-right: $small;
+    }
+    div.input-group {
+        flex-basis: 25%;
+        height: 80%;
+        display: flex;        
+        select {
+            width: 70%;
+            border: $yellow 1px solid;
+            outline: none;
+            color: $brown;
+            cursor: pointer;
+        }  
+    }
+    div.input-group.search {
+        input {
+            width: 70%;
+            padding-left: 0.3rem;
+            border: $yellow 1px solid;
+            outline: none;
+            &::placeholder {
+                color: $brown;
+            }
+        }   
+        .fontawesome {
+            color: lighten($yellow, 10%);
+            font-size: 2rem;
+            margin-top: -0.14rem;
+            margin-left: -0.2rem;
+            font-weight: 100;
+            cursor: pointer;
+        }
+    }
+}
+
+// media queries 
+
+@media(max-width:1200px) {
+    div.filters-wrapper {
+        width: 100%;
+        h2 {
+            flex-basis: 33%;
+        }
+        div.input-group {
+            flex-basis: 33%;
+            select, input {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media(max-width:900px) {
+    div.filters-wrapper {
+        h2 {
+            display: none;
+        }
+        div.input-group {
+            flex-basis: 40%;
+            select, input {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media(max-width:600px) {
+    div.filters-wrapper {
+        flex-direction: column;
+        align-content: center;
+        height: 120px;
+        div.input-group {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            select, input {
+                height: 2rem;
+                font-size: $font-small;
+            }
+            select {
+                width: 350px;
+            }
+        }
+        
+        div.input-group.search {
+            input{
+                width: 343px;
+                padding: 0;
+                padding-left: 0.3rem;
+                margin-bottom: $xxs;
+            }
+            .fontawesome {
+                font-size: 2.4rem;
+                margin-left: -2.1rem;
+                margin-top: -3px;
+            }
+        }
+    }
+}
