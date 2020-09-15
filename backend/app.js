@@ -23,12 +23,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// const myOAuth2Client = new OAuth2(
-//     "client ID goes here",
-//     "client secret goes here",
-//     "https://developers.google.com/oauthplayground"
-//     )
-
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.ADMIN_PASS}@cluster0.kgdr1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`, {useNewUrlParser: true, useCreateIndex: true})
         .then(() => {
             console.log('Mongo connected');
@@ -84,6 +78,7 @@ app.use('/auth', auth);
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     app.get('*', (req, res) => {
+        console.log(req.originalUrl)
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
 } 
