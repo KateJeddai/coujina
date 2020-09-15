@@ -66,6 +66,10 @@ const RecipeSchema = new Schema({
         rankUsers: [{
             type: Schema.Types.ObjectId,
             ref: 'User'
+        }],
+        rankLocalUsers: [{
+            type: Schema.Types.ObjectId,
+            ref: 'LocalUser'
         }]
     },
     comments: [{
@@ -80,7 +84,12 @@ const RecipeSchema = new Schema({
             commentUser: {
                 type: Schema.Types.ObjectId,
                 ref: 'User'
-            }
+            },
+            commentLocalUser: [{
+                type: Schema.Types.ObjectId,
+                ref: 'LocalUser'
+            }]
+
     }],
     user: {
         type: Schema.Types.ObjectId,

@@ -91,24 +91,23 @@ router.get('/:cat', async (req, res) => {
             diff = recipesAllInCategory.length - recipesToSkip;
            
                 recipes = Recipe.find({category: cat}) 
-                            .sort({ date: -1 })
-                            .skip(recipesToSkip)
-                            .limit(limit);
-        }
-        
-            recipes.then((recipes) => {
-                data = recipes;
-                return Recipe.find().countDocuments({category: cat})
-                             .then(count => {
-                                 res.status(200).send({
-                                     recipes: data,
-                                     cat, count, diff
-                                 })
-                             })
-              })
-              .catch(err => {
-                   res.status(400).send({ err: err.message });
-              })    
+                                .sort({ date: -1 })
+                                .skip(recipesToSkip)
+                                .limit(limit);
+        }        
+        recipes.then((recipes) => {
+            data = recipes;
+            return Recipe.find().countDocuments({category: cat})
+                         .then(count => {
+                            res.status(200).send({
+                                recipes: data,
+                                cat, count, diff
+                            })
+                         })
+            })
+            .catch(err => {
+                res.status(400).send({ err: err.message });
+            })    
 })
 
 // get individual recipe 
@@ -116,6 +115,7 @@ router.get('/:cat', async (req, res) => {
 router.get('/recipe/:title', (req, res) => {
     Recipe.find({title: req.params.title})
           .populate('comments.commentUser')
+          .populate('comments.commentLocalUser')
           .then((recipe) => {
               res.status(200).send({recipe: recipe[0]});
           })
@@ -225,13 +225,24 @@ router.delete('/delete/:id', ensureAuthenticated, (req, res) => {
 router.post('/comment/:name', ensureAuthenticated, async (req, res) => {
     try {
         const recipe = await Recipe.findOne({title: req.params.name});
-        const newComment = {
-            commentBody: filter_comment.clean(req.body.comment),
+        const {userType, comment} = req.body;
+        let newComment;
+        newComment = userType === "local" ? {
+            commentBody: filter_comment.clean(comment),
+            commentLocalUser: req.user._id
+        } : {
+            commentBody: filter_comment.clean(comment),
             commentUser: req.user._id
         }
         recipe.comments.unshift(newComment);
         await recipe.save();
-        res.status(200).send({recipe});
+
+        const recipeWithComments = await Recipe.findOne({title: req.params.name})
+                                               .populate('comments.commentUser')
+                                               .populate('comments.commentLocalUser');
+        
+        console.log(recipeWithComments)
+        res.status(200).send({recipe: recipeWithComments});
     }
     catch(err) {
         res.status(400).json({ err: err.message });

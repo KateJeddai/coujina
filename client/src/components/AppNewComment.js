@@ -5,7 +5,8 @@ import '../styles/AppIndividualRecipe.scss';
 import AppRanking from './AppRanking';
 
 const AppNewComment = (props) => {
-    const user = useSelector(state => state.auth.user);
+    const user = useSelector(state => state.auth.user);    
+    const userType = localStorage.getItem('google') == "true" ? 'google' : 'local';
     const recipe = props.recipe;
     const [commentSubmit, setCommentSubmit] = useState(false);
     const [comment, setComment] = useState('');
@@ -34,7 +35,7 @@ const AppNewComment = (props) => {
             dispatch(updateRecipeRanking(recipe, rank));
         }
         const dataComment = {
-            comment
+            comment, userType
         };              
         if(comment.trim().length > 0) {
             dispatch(postComment(recipe, dataComment))
