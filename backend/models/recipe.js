@@ -85,10 +85,10 @@ const RecipeSchema = new Schema({
                 type: Schema.Types.ObjectId,
                 ref: 'User'
             },
-            commentLocalUser: [{
+            commentLocalUser: {
                 type: Schema.Types.ObjectId,
                 ref: 'LocalUser'
-            }]
+            }
 
     }],
     user: {
